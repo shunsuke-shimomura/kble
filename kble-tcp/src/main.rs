@@ -41,13 +41,16 @@ async fn main() -> Result<()> {
         let mut buffer = [0; 8192];
         loop {
             match tcp_upstream.read(&mut buffer).await? {
-                0 => break,
+                0 => {
+                    info!("TCP connection closed");
+                    break
+                },
                 n => {
                     tx.send(buffer[..n].to_vec().into()).await?;
                 }
             }
         }
-        info!("TCP connection closed");
+        
         anyhow::Ok(())
     };
 
