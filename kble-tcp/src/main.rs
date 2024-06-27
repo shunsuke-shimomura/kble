@@ -34,7 +34,7 @@ async fn main() -> Result<()> {
             let body = body?;
             tcp_downstream.write_all(&body).await?;
         }
-        warn!("TCP connection closed");
+        warn!("Error: TCP connection closed");
         anyhow::Ok(())
     };
     let from_tcp = async {
@@ -42,7 +42,7 @@ async fn main() -> Result<()> {
         loop {
             match tcp_upstream.read(&mut buffer).await? {
                 0 => {
-                    warn!("TCP connection closed");
+                    warn!("Error: TCP connection closed");
                     break
                 },
                 n => {
