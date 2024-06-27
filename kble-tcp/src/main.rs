@@ -33,6 +33,7 @@ async fn main() -> Result<()> {
             let body = body?;
             tcp_downstream.write_all(&body).await?;
         }
+        println!("TCP connection closed");
         anyhow::Ok(())
     };
     let from_tcp = async {
@@ -45,6 +46,7 @@ async fn main() -> Result<()> {
                 }
             }
         }
+        println!("TCP connection closed");
         anyhow::Ok(())
     };
 
