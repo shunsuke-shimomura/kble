@@ -5,6 +5,7 @@ use clap::Parser;
 use futures::{SinkExt, StreamExt};
 use tokio::io::{AsyncReadExt, AsyncWriteExt};
 use tokio::net::TcpStream;
+use tracing::info;
 use tracing_subscriber::{prelude::*, EnvFilter};
 
 #[derive(Debug, Parser)]
@@ -33,7 +34,7 @@ async fn main() -> Result<()> {
             let body = body?;
             tcp_downstream.write_all(&body).await?;
         }
-        println!("TCP connection closed");
+        info!("TCP connection closed");
         anyhow::Ok(())
     };
     let from_tcp = async {
@@ -46,7 +47,7 @@ async fn main() -> Result<()> {
                 }
             }
         }
-        println!("TCP connection closed");
+        info!("TCP connection closed");
         anyhow::Ok(())
     };
 
