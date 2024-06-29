@@ -17,7 +17,7 @@ const AOS_TF_SIZE: usize = 444;
 // Version Number = 0b01
 // SCID = 0b0000_0000
 // VCID = 0b00_0000
-const AOS_TF_PH_VN_SCID_VCID: [u8; 2] = [0x40, 0x00];
+const AOS_TF_PH_VN_SCID_VCID: [u8; 2] = [0x60, 0x00];
 #[allow(clippy::unusual_byte_groupings)]
 const IDLE_PACKET_PH_EXCEPT_LEN: [u8; 4] = [
     // Version = 0b000
